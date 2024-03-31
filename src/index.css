@@ -7,3 +7,15 @@
     font-weight: 400;
     font-style: normal;
 }
+
+@media (max-width:550px) {
+    .columns {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width:425px) {
+    .heading {
+        margin-top: 28px;
+    }
+}

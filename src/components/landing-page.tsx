@@ -1,10 +1,8 @@
-
-
 export default function LandingPage() {
     return (
-        <div className="grid grid-cols-2 items-center h-[700px] w-[1400px] rounded-lg" style={{ backgroundColor: "#5683d2" }}>
+        <div className="flex justify-between ml-6 mr-6 mb-6 items-center h-[700px] rounded-lg columns" style={{ backgroundColor: "#5683d2" }}>
             <div className="ml-12">
-                <h1 className="acme-regular text-8xl text-white">Invest and grow</h1>
+                <h1 className="acme-regular text-8xl text-white heading">Invest and grow</h1>
                 <p className="mt-4 text-gray-300 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Saepe, expedita aliquid cum <br /> at quas aperiam commodi electus iusto facere totam
                     consequuntur repellat ex quae maxime dignissimos.</p>
