@@ -1,15 +1,13 @@
-import Footer from "./components/footer";
-import Header from "./components/main-header";
-import HomePage from "./components/home-page";
+import Header from "./components/mainHeader";
+import HomePage from "./components/homePage";
 import LandingPage from "./components/landing-page";
-import LandingHeader from "./components/landing-header";
+import LandingHeader from "./components/landingHeader";
+import AllTransactions from "./components/homePage/allTransactions";
 
 function App() {
   return (
     <>
-      <LandingHeader />
-      <div className="flex justify-center"><LandingPage /></div>
-      {/* <Footer /> */}
+      <AllTransactions/>
     </>
   );
 }

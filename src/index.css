@@ -17,5 +17,32 @@
 @media (max-width:425px) {
     .heading {
         margin-top: 28px;
+        font-size: 80px;
+    }
+
+    .intro {
+        margin: 15px;
+    }
+
+    .table {
+        width: 330px;
+    }
+
+    .balance {
+        width: 280px;
+    }
+
+    .withdraw {
+        font-size: larger;
+    }
+}
+
+@media (max-width:325px) {
+    .heading {
+        font-size: 50px;
+    }
+
+    .table {
+        width: 100px;
     }
 }
