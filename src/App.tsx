@@ -3,11 +3,15 @@ import HomePage from "./components/homePage";
 import LandingPage from "./components/landing-page";
 import LandingHeader from "./components/landingHeader";
 import AllTransactions from "./components/homePage/allTransactions";
+import MyProfile from "./components/myProfile";
 
 function App() {
   return (
     <>
-      <AllTransactions/>
+      <Header />
+      <div className="">
+        <HomePage />
+      </div>
     </>
   );
 }

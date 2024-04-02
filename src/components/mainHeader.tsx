@@ -25,7 +25,7 @@ export default function Header() {
                         aria-expanded={open ? 'true' : undefined}
                         onClick={handleClick}
                     >
-                        <img className="w-10 h-10 ml-8" src="https://cdn.iconscout.com/icon/free/png-512/free-user-1851010-1568997.png?f=webp&w=512" alt="logo" />
+                        <img className="w-10 h-10 ml-8" src="/images/user.png" alt="logo" />
                     </Button>
                     <Menu
                         id="basic-menu"
