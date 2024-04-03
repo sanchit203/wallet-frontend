@@ -6,15 +6,18 @@ import SignUp from "./components/signUp";
 import SignIn from "./components/signIn";
 import BankDetails from "./components/bankDetails";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { checkLocalStorageForAccessTokenAndValidateItsTTL } from "./utilities/authUtils";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { ToastContainer } from "react-toastify";
 import { MILLISECONDS_IN_AN_HOUR } from "./constant/Time";
+import Admin from "./components/admin";
 
 function App() {
   const dispatch = useAppDispatch();
-  const isCheckingLocalStorage = useAppSelector(state => state.loginSlice.isCheckingLocalStorage);
+  const isCheckingLocalStorage = useAppSelector(
+    state => state.loginSlice.isCheckingLocalStorage
+  );
   const isLoggedIn = useAppSelector(state => state.loginSlice.isLoggedIn);
 
   useEffect(() => {
@@ -38,10 +41,26 @@ function App() {
         <Route index element={<LandingPage />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/home" element={isLoggedIn ? <HomePage /> : <Navigate to="/" />} />
-        <Route path="/bank-details" element={isLoggedIn ? <BankDetails /> : <Navigate to="/" />} />
-        <Route path="/my-profile" element={isLoggedIn ? <MyProfile /> : <Navigate to="/" />} />
-        <Route path="/transactions" element={isLoggedIn ? <AllTransactions /> : <Navigate to="/" />} />
+        <Route
+          path="/home"
+          element={isLoggedIn ? <HomePage /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/bank-details"
+          element={isLoggedIn ? <BankDetails /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/my-profile"
+          element={isLoggedIn ? <MyProfile /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/transactions"
+          element={isLoggedIn ? <AllTransactions /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/admin"
+          element={isLoggedIn ? <Admin /> : <Navigate to="/" />}
+        />
       </Routes>
       <ToastContainer />
     </>
