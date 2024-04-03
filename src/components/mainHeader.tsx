@@ -36,6 +36,7 @@ export default function Header() {
                             'aria-labelledby': 'basic-button',
                         }}
                     >
+                        <MenuItem onClick={handleClose}>Admin</MenuItem>
                         <MenuItem onClick={handleClose}>My profile</MenuItem>
                         <MenuItem onClick={handleClose}>Bank details</MenuItem>
                         <MenuItem onClick={handleClose}>Sign out</MenuItem>
@@ -45,6 +46,7 @@ export default function Header() {
                 <div className="flex gap-x-1 text-lg font-bold">
                     <div className="hidden md:block" id="profileMenu">
                         <div className="flex space-x-2 mr-2">
+                        <button type="button" className="text-gray-600 bg-white hover:bg-blue-100 border border-blue-400 font-medium rounded-full text-sm px-3 py-2.5">ADMIN</button>
                             <button type="button" className="text-gray-600 bg-white hover:bg-blue-100 border border-blue-400 font-medium rounded-full text-sm px-3 py-2.5">MY PROFILE</button>
                             <button type="button" className="text-gray-600 bg-white hover:bg-blue-100 border border-blue-400 font-medium rounded-full text-sm px-3 py-2.5">BANK DETAILS</button>
                             <button type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5">SIGN OUT</button>
