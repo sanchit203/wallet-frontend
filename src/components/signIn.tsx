@@ -1,6 +1,40 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { ISignInRequest, signInThunk } from "../feature/authenticationThunk";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 
 export default function SignIn() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const isLoggedIn = useAppSelector(state =>state.loginSlice.isLoggedIn);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  
+  const handleOnChangeUsername = (event: any) => {
+    setUsername(event.target.value);
+  }
+
+  const handleOnChangePassword = (event: any) => {
+    setPassword(event.target.value);
+  }
+
+  const handleOnSubmit = (event: any)=> {
+    event.preventDefault();
+    const signUpData: ISignInRequest = {
+      username,
+      password
+    }
+
+    dispatch(signInThunk(signUpData));
+  }
+
+  useEffect(()=>{
+    if(isLoggedIn) {
+      navigate('/home');
+    }
+  }, [isLoggedIn, navigate]);
+
   return (
     <div className="p-8 flex flex-col">
       <div className="flex justify-center">
@@ -16,7 +50,7 @@ export default function SignIn() {
             <h1 className="text-xl font-bold leading-tight mb-6 tracking-tight text-gray-600 md:text-2xl">
               Sign in to your account
             </h1>
-            <form className="space-y-4 md:space-y-6" action="/">
+            <form className="space-y-4 md:space-y-6" onSubmit={handleOnSubmit}>
               <div>
                 <label
                   htmlFor="username"
@@ -29,6 +63,9 @@ export default function SignIn() {
                   name="username"
                   id="username"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                  required
+                  onChange={handleOnChangeUsername}
+                  value={username}
                 />
               </div>
 
@@ -37,7 +74,7 @@ export default function SignIn() {
                   htmlFor="password"
                   className="block mb-1 text-sm font-medium"
                 >
-                  Password*
+                  Password
                 </label>
                 <input
                   type="password"
@@ -45,6 +82,8 @@ export default function SignIn() {
                   id="password"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                   required
+                  onChange={handleOnChangePassword}
+                  value={password}
                 />
               </div>
 

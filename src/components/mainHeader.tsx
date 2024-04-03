@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
+import SignOutButton from "./SignOutButton";
 
 export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -82,12 +83,7 @@ export default function Header() {
                   BANK DETAILS
                 </button>
               </Link>
-              <button
-                type="button"
-                className="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5"
-              >
-                SIGN OUT
-              </button>
+              <SignOutButton />
             </div>
           </div>
         </div>

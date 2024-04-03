@@ -1,6 +1,58 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { ISignUpRequest, signUpThunk } from "../feature/authenticationThunk";
 
 export default function SignUp() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const isLoggedIn = useAppSelector(state =>state.loginSlice.isLoggedIn);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const handleOnChangeName = (event: any) => {
+    setName(event.target.value);
+  }
+
+  const handleOnChangeEmail = (event: any) => {
+    setEmail(event.target.value);
+  }
+
+  const handleOnChangePhoneNumber = (event: any) => {
+    setPhoneNumber(event.target.value);
+  }
+
+  const handleOnChangeUsername = (event: any) => {
+    setUsername(event.target.value);
+  }
+
+  const handleOnChangePassword = (event: any) => {
+    setPassword(event.target.value);
+  }
+
+  const handleOnSubmit = (event: any)=> {
+    event.preventDefault();
+    const signUpData: ISignUpRequest = {
+      name,
+      username,
+      phoneNumber,
+      password,
+      email
+    }
+
+    dispatch(signUpThunk(signUpData));
+  }
+
+  useEffect(()=>{
+    if(isLoggedIn) {
+      navigate('/home');
+    }
+  }, [isLoggedIn, navigate]);
+
   return (
     <>
       <div className="flex justify-center">
@@ -16,7 +68,7 @@ export default function SignUp() {
             <h1 className="text-xl font-bold leading-tight mb-6 tracking-tight text-gray-600 md:text-2xl">
               Create Account
             </h1>
-            <form className="space-y-4 md:space-y-6" action="/">
+            <form className="space-y-4 md:space-y-6" onSubmit={handleOnSubmit}>
               <div>
                 <label
                   htmlFor="name"
@@ -30,6 +82,8 @@ export default function SignUp() {
                   id="name"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                   required
+                  onChange={handleOnChangeName}
+                  value={name}
                 />
               </div>
 
@@ -46,6 +100,8 @@ export default function SignUp() {
                   id="email"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                   required
+                  onChange={handleOnChangeEmail}
+                  value={email}
                 />
               </div>
 
@@ -62,6 +118,8 @@ export default function SignUp() {
                   id="phoneNumber"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                   required
+                  onChange={handleOnChangePhoneNumber}
+                  value={phoneNumber}
                 />
               </div>
 
@@ -70,13 +128,16 @@ export default function SignUp() {
                   htmlFor="username"
                   className="block mb-1 text-sm font-medium"
                 >
-                  Username*
+                  Username
                 </label>
                 <input
                   type="username"
                   name="username"
                   id="username"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                  required
+                  onChange={handleOnChangeUsername}
+                  value={username}
                 />
               </div>
 
@@ -85,7 +146,7 @@ export default function SignUp() {
                   htmlFor="password"
                   className="block mb-1 text-sm font-medium"
                 >
-                  Password*
+                  Password
                 </label>
                 <input
                   type="password"
@@ -93,38 +154,17 @@ export default function SignUp() {
                   id="password"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                   required
+                  onChange={handleOnChangePassword}
+                  value={password}
                 />
-              </div>
-
-              <div className="flex items-start">
-                <div className="flex items-center h-5">
-                  <input
-                    id="terms"
-                    type="checkbox"
-                    className="w-4 h-4 border border-gray-300 rounded cursor-pointer"
-                  />
-                </div>
-
-                <div className="ml-3 text-sm">
-                  <label>
-                    I accept the{" "}
-                    <a
-                      className="font-medium text-primary-600 hover:underline"
-                      href="/"
-                    >
-                      Terms and Conditions
-                    </a>
-                  </label>
-                </div>
-              </div>
-
+              </div> 
               <button
                 type="submit"
                 className="w-full border hover:bg-blue-500 hover:text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center"
               >
                 Sign up
               </button>
-              <p className="text-sm font-light">
+              <p className="text-sm font-medium text-gray-500">
                 Already have an account?{" "}
                 <Link
                   to="/sign-in"
