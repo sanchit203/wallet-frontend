@@ -12,8 +12,8 @@ import BankDetails from "./components/bankDetails";
 function App() {
   return (
     <>
-    <Header/>
-    <BankDetails />
+    <LandingHeader/>
+    <LandingPage />
     </>
   );
 }
