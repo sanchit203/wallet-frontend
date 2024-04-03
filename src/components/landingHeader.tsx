@@ -7,7 +7,7 @@ export default function LandingHeader() {
 
   return (
     <header
-      className="flex w-full items-center justify-between px-4 py-4 bg-white"
+      className="flex w-full items-center justify-between px-6 py-4 bg-white"
       style={{ height: 70 }}
     >
       <Link to="/">
@@ -15,14 +15,24 @@ export default function LandingHeader() {
       </Link>
       <div>
         {isLoggedIn ? (
-          <SignOutButton />
+          <div className="space-x-2">
+            <Link to="/home">
+              <button
+                type="button"
+                className="text-gray-600 bg-white hover:bg-blue-100 border border-blue-400 font-medium rounded-full text-sm px-3 py-2.5"
+              >
+                HOME
+              </button>
+            </Link>
+            <SignOutButton />
+          </div>
         ) : (
           <Link to="/sign-in">
             <button
               type="button"
-              className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 dark:bg-gray-800"
+              className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2"
             >
-              Sign in
+              SIGN IN
             </button>
           </Link>
         )}

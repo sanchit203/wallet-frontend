@@ -45,12 +45,14 @@ export default function TransactionsTable() {
                   ₹ 500.00
                 </td>
                 <td className="px-2 py-4 whitespace-nowrap text-end text-sm font-medium">
-                  <button
-                    type="button"
-                    className="p-2 items-center gap-x-2 text-sm rounded-lg border rounded-md hover:bg-gray-100"
-                  >
-                    Details
-                  </button>
+                  <Link to="/transaction-detail">
+                    <button
+                      type="button"
+                      className="p-2 items-center gap-x-2 text-sm rounded-lg border rounded-md hover:bg-gray-100"
+                    >
+                      Details
+                    </button>
+                  </Link>
                 </td>
               </tr>
 

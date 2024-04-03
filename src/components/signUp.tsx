@@ -160,7 +160,7 @@ export default function SignUp() {
               </div> 
               <button
                 type="submit"
-                className="w-full border hover:bg-blue-500 hover:text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                className="w-full border bg-blue-500 hover:bg-blue-700 text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center"
               >
                 Sign up
               </button>

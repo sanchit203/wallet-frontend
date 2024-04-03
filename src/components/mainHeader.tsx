@@ -4,8 +4,13 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import SignOutButton from "./SignOutButton";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../app/hooks";
+import { setLogin } from "../feature/loginSlice";
+import { AUTH_TOKEN_KEY } from "../utilities/authUtils";
 
 export default function Header() {
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -14,9 +19,17 @@ export default function Header() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const handleOnSignOut = () => {
+    dispatch(setLogin(false));
+    localStorage.removeItem(AUTH_TOKEN_KEY);
+    navigate("/");
+  };
+
   return (
     <header
-      className="flex w-full items-center justify-between px-4 py-4 bg-white"
+      className="flex w-full items-center justify-between px-4 py-4 bg-white shadow-md"
       style={{ height: 70 }}
     >
       <Link to="/">
@@ -52,7 +65,7 @@ export default function Header() {
             <Link to="/bank-details">
               <MenuItem onClick={handleClose}>Bank details</MenuItem>
             </Link>
-            <MenuItem onClick={handleClose}>Sign out</MenuItem>
+            <MenuItem onClick={handleOnSignOut}>Sign out</MenuItem>
           </Menu>
         </div>
 

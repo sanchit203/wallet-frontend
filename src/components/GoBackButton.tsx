@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router-dom";
 
 export default function GoBackButton() {
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   const goBack = () => {
-    navigate(-1); // Navigates back one step in history
+    navigate(-1);
   };
+  
   return (
     <button
       type="button"

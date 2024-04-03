@@ -4,9 +4,9 @@ import { ISignInRequest, signInThunk } from "../feature/authenticationThunk";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 
 export default function SignIn() {
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
   const isLoggedIn = useAppSelector(state =>state.loginSlice.isLoggedIn);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -25,7 +25,6 @@ export default function SignIn() {
       username,
       password
     }
-
     dispatch(signInThunk(signUpData));
   }
 
@@ -100,7 +99,7 @@ export default function SignIn() {
               <div>
                 <button
                   type="submit"
-                  className="w-full block mb-4 border hover:bg-blue-500 hover:text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                  className="w-full block mb-4 border bg-blue-500 hover:bg-blue-700 text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                 >
                   Sign in
                 </button>

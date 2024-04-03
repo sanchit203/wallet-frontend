@@ -18,9 +18,31 @@ export default function MyProfile() {
                   <img src="/images/profile.png" />
                 </div>
               </div>
-              <p className="mb-1">Name: John Jacobs</p>
-              <p className="mb-1">Mobile No.: 9732498471</p>
-              <p>E-mail: blabla@123.com</p>
+              <p className="mb-4 bg-gray-200 p-2 rounded-full">jacobs123</p>
+              <div className="mb-1 flex justify-center">
+                <p>
+                  Name:&nbsp;
+                </p>
+                <p className="font-semibold">
+                  John Jacobs
+                </p>
+              </div>
+              <div className="mb-1 flex justify-center">
+                <p>
+                  Mobile No.:&nbsp;
+                </p>
+                <p className="font-semibold">
+                  9732498471
+                </p>
+              </div>
+              <div className="mb-1 flex justify-center">
+                <p>
+                  E-mail:&nbsp;
+                </p>
+                <p className="font-semibold">
+                  jacobs@123.com
+                </p>
+              </div>
             </div>
           </div>
         </div>
