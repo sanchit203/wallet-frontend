@@ -46,4 +46,7 @@
     .user {
         width: 240px;
     }
+    .bank {
+        font-size: x-small;
+    }
 }
