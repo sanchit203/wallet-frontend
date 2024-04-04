@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import GoBackButton from "../GoBackButton";
 import Header from "../mainHeader";
-import { getWithdrawDetailThunk } from "../../feature/withdrawPageSlice";
+import { createWithdrawRequestThunk, getWithdrawDetailThunk } from "../../feature/withdrawPageSlice";
 
 export default function Withdraw() {
   const dispatch = useAppDispatch();
@@ -24,6 +24,7 @@ export default function Withdraw() {
   const handleOnSubmitWithdraw = (event: any) => {
     event.preventDefault();
     
+    dispatch(createWithdrawRequestThunk(withdrawAmount));
   };
 
   const isBankAccountDetailsPresent = () => {

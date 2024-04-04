@@ -15,6 +15,11 @@ export default function TransactionDetail() {
     useEffect(() => {
         dispatch(getTransacationDetailThunk(id ? Number(id): -1));
     }, []);
+
+    if(transactionDetail.dateTime === "") {
+        return <>Loading....</>
+    }
+
     return (
         <>
             <Header />
@@ -39,7 +44,7 @@ export default function TransactionDetail() {
                         )}
 
                         <div className="flex items-center mb-1 gap-x-1">
-                            <p className="text-3xl font-semibold">₹ 500</p>
+                            <p className="text-3xl font-semibold">₹ {transactionDetail.amount}</p>
                             {transactionDetail.status === "SUCCESS" ? (
                                 <img src="/images/check.png" className="h-12 w-12" />
                             ) : (
@@ -48,8 +53,7 @@ export default function TransactionDetail() {
                         </div>
                         <p className="mb-4">{toWords.convert(transactionDetail.amount)}</p>
                         {transactionDetail.status === "PENDING" && (
-                            <p className="mt-4 bg-yellow-100 p-6 rounded-lg">Your transaction is in process.
-                                It will be credited to your account upto next 48 hours.</p>
+                            <p className="mt-4 bg-yellow-100 p-6 rounded-lg">Your transaction is currently processing. It may take up to 48 hours to complete.</p>
                         )}
                     </div>
                 </div>

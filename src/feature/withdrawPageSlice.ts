@@ -35,7 +35,7 @@ export const createWithdrawRequestThunk = createAsyncThunk(
   async (amount: number) => {
     try {
       const response = axiosInstance.post(CREATE_WITHDRAW_REQUEST, { amount });
-      toast.success("Withdraw request created successfully");
+      toast.success("Withdraw request created successfully", {theme: "dark"});
       return amount;
     } catch (ex: any) {
       if (ex instanceof AxiosError)
