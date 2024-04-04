@@ -7,3 +7,4 @@ export const PROFILE = "/user-details/profile";
 export const BANK_DETAILS = "/user-details/bank-details";
 export const WITHDRAW_DETAIL = "/withdraw";
 export const TRANSACTION = "/transaction";
+export const CREATE_WITHDRAW_REQUEST = "/transaction/create-withdraw-request";
