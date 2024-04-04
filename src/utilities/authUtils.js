@@ -46,12 +46,18 @@ export const setAccessTokenAndTTL = (accessToken) => {
 }
 
 export const getRoles = () => {
-  const accessToken = getAccessTokenAndTTLFromLocalStorage();
+  const accessTokenAndTTL = getAccessTokenAndTTLFromLocalStorage();
 
-  if(accessToken) {
+  if(accessTokenAndTTL) {
+    const {accessToken} = accessTokenAndTTL;
     const decodedToken = jwtDecode(accessToken);
     return decodedToken.roles;
   }
 
   return [];
+}
+
+export const isAdmin = () => {
+  const roles = getRoles();
+  return roles.indexOf("ROLE_ADMIN") !== -1;
 }

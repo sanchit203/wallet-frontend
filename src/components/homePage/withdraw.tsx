@@ -1,7 +1,31 @@
+import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import GoBackButton from "../GoBackButton";
 import Header from "../mainHeader";
+import { getWithdrawDetailThunk } from "../../feature/withdrawPageSlice";
 
 export default function Withdraw() {
+    const dispatch = useAppDispatch();
+    const details = useAppSelector(state => state.withdrawDetailSlice);
+
+    const [withdrawAmount, setWithdrawAmount] = useState(0);
+
+    const handleOnChangeWithdrawAmount = (event: any) => {
+        setWithdrawAmount(event.target.value);
+    };
+
+    const isDisabled = () => {
+        return withdrawAmount > details.withdrawableAmount || details.withdrawableAmount === 0;
+    }
+
+    const handleOnSubmitWithdraw = (event: any) => {
+        event.preventDefault();
+    }
+
+    useEffect(() => {
+        dispatch(getWithdrawDetailThunk());
+    }, []);
+
     return (
         <>
             <Header />
@@ -13,14 +37,14 @@ export default function Withdraw() {
                 <div className="flex justify-center">
                     <div className="w-[400px] user mt-8 p-4 bg-white border border-gray-200 rounded-2xl shadow-2xl">
                         <div className="p-1.5 mb-[40px] font-semibold text-center text-gray-500 gap-y-12 w-full">
-                            <p>Withdrawable : ₹ 352.04</p>
+                            <p>Withdrawable : ₹ {details.withdrawableAmount.toString()}</p>
                             <div className="bg-gray-200 text-xs rounded-md mt-2 p-1">
-                                <p>John Jacobs</p>
-                                <p>19008+73899300</p>
-                                <p>BOBHANSIX</p>
+                                <p>{details.nameOnBankAccount}</p>
+                                <p>{details.bankAccountNumber}</p>
+                                <p>{details.ifscCode}</p>
                             </div>
                         </div>
-                        <form className="space-y-4 md:space-y-6" onSubmit={() => { }}>
+                        <form className="space-y-4 md:space-y-6" onSubmit={handleOnSubmitWithdraw}>
                             <form className="max-w-[18rem] mx-auto flex">
                                 <div className="relative w-full">
                                     <div className="absolute inset-y-0 start-0 top-0 flex items-center ps-3.5">
@@ -46,13 +70,16 @@ export default function Withdraw() {
                                         id="currency-input"
                                         className="focus:border-none p-2.5 w-full ps-10 text-md text-gray-800 bg-gray-50"
                                         placeholder="0"
+                                        value={withdrawAmount}
+                                        onChange={handleOnChangeWithdrawAmount}
                                         required />
                                 </div>
                             </form>
                             <div>
                                 <button
                                     type="submit"
-                                    className="w-full block mb-4 mt-[200px] border bg-blue-500 hover:bg-blue-700 text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                                    className={`w-full block mb-4 mt-[200px] border text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center ${isDisabled() ? "bg-gray-300" : "bg-blue-500 hover:bg-blue-700"}`}
+                                    disabled={isDisabled()}
                                 >
                                     Withdraw
                                 </button>

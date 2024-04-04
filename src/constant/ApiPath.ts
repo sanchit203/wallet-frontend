@@ -3,3 +3,7 @@ export const CREATE_TRANSACTION = "/transaction/create-transaction";
 export const GET_ALL_TRANSACTION = "/transaction/get";
 export const SIGN_IN = "/auth/sign-in";
 export const HOME_PAGE = "/home-page";
+export const PROFILE = "/user-details/profile";
+export const BANK_DETAILS = "/user-details/bank-details";
+export const WITHDRAW_DETAIL = "/withdraw";
+export const TRANSACTION = "/transaction";

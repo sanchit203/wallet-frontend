@@ -14,9 +14,9 @@ export default function LandingPage() {
             Invest and grow
           </h1>
           <p className="mt-4 text-gray-300 text-sm">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe,
-            expedita aliquid cum <br /> at quas aperiam commodi electus iusto
-            facere totam consequuntur repellat ex quae maxime dignissimos.
+            Unlock the potential of your finances with our investment platform.
+            Plant your money today and <br /> harvest the rewards of tomorrow. Join us
+            on the journey to financial growth and prosperity.
           </p>
           <Link to="/sign-up">
             <button

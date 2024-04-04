@@ -7,10 +7,9 @@ import SignOutButton from "./SignOutButton";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../app/hooks";
 import { setLogin } from "../feature/loginSlice";
-import { AUTH_TOKEN_KEY } from "../utilities/authUtils";
+import { AUTH_TOKEN_KEY, isAdmin } from "../utilities/authUtils";
 
 export default function Header() {
-
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -56,9 +55,11 @@ export default function Header() {
               "aria-labelledby": "basic-button"
             }}
           >
-            <Link to="/admin">
-              <MenuItem onClick={handleClose}>Admin</MenuItem>
-            </Link>
+            {isAdmin() && (
+              <Link to="/admin">
+                <MenuItem onClick={handleClose}>Admin</MenuItem>
+              </Link>
+            )}
             <Link to="/my-profile">
               <MenuItem onClick={handleClose}>My profile</MenuItem>
             </Link>
@@ -72,14 +73,16 @@ export default function Header() {
         <div className="flex gap-x-1 text-lg font-bold">
           <div className="hidden md:block" id="profileMenu">
             <div className="flex space-x-2 mr-2">
-              <Link to="/admin">
-                <button
-                  type="button"
-                  className="text-gray-600 bg-white hover:bg-blue-100 border border-blue-400 font-medium rounded-full text-sm px-3 py-2.5"
-                >
-                  ADMIN
-                </button>
-              </Link>
+              {isAdmin() && (
+                <Link to="/admin">
+                  <button
+                    type="button"
+                    className="text-gray-600 bg-white hover:bg-blue-100 border border-blue-400 font-medium rounded-full text-sm px-3 py-2.5"
+                  >
+                    ADMIN
+                  </button>
+                </Link>
+              )}
               <Link to="/my-profile">
                 <button
                   type="button"

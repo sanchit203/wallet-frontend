@@ -1,7 +1,17 @@
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import GoBackButton from "./GoBackButton";
 import Header from "./mainHeader";
+import { profileSliceThunk } from "../feature/profileSlice";
 
 export default function MyProfile() {
+  const profileData = useAppSelector(state => state.profileSlice);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(profileSliceThunk());
+  }, []);
+
   return (
     <>
       <Header />
@@ -18,13 +28,13 @@ export default function MyProfile() {
                   <img src="/images/profile.png" />
                 </div>
               </div>
-              <p className="mb-4 bg-gray-200 p-2 rounded-full">jacobs123</p>
+              <p className="mb-4 bg-gray-200 p-2 rounded-full">{profileData.username}</p>
               <div className="mb-1 flex justify-center">
                 <p>
                   Name:&nbsp;
                 </p>
                 <p className="font-semibold">
-                  John Jacobs
+                  {profileData.name}
                 </p>
               </div>
               <div className="mb-1 flex justify-center">
@@ -32,7 +42,7 @@ export default function MyProfile() {
                   Mobile No.:&nbsp;
                 </p>
                 <p className="font-semibold">
-                  9732498471
+                  {profileData.phoneNumber}
                 </p>
               </div>
               <div className="mb-1 flex justify-center">
@@ -40,7 +50,7 @@ export default function MyProfile() {
                   E-mail:&nbsp;
                 </p>
                 <p className="font-semibold">
-                  jacobs@123.com
+                  {profileData.email}
                 </p>
               </div>
             </div>

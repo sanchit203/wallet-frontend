@@ -2,7 +2,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axiosInstance from "../utilities/axiosInstance";
 import { HOME_PAGE } from "../constant/ApiPath";
 
-interface ITransaction {
+export interface ITransaction {
   id: Number;
   date: string;
   amount: Number;

@@ -1,7 +1,44 @@
+import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import GoBackButton from "./GoBackButton";
 import Header from "./mainHeader";
+import { IBankDetailSlice, getBankDetailThunk, updateBankDetailThunk } from "../feature/bankDetailSlice";
 
 export default function BankDetails() {
+  const bankDetails = useAppSelector(state => state.bankDetailSlice);
+  const dispatch = useAppDispatch();
+
+  const [accountNo, setAccountNo] = useState(bankDetails.bankAccountNumber);
+  const [name, setName] = useState(bankDetails.nameOnBankAccount);
+  const [ifscCode, setIfscCode] = useState(bankDetails.ifscCode);
+
+  const handleOnChangeAccountNo = (event: any) => {
+    setAccountNo(event.target.value);
+  };
+
+  const handleOnChangeName = (event: any) => {
+    setName(event.target.value);
+  };
+
+  const handleOnChangeIfsc = (event: any) => {
+    setIfscCode(event.target.value);
+  };
+
+  const handleOnSubmit = (event: any) => {
+    event.preventDefault();
+    const bankDetails: IBankDetailSlice = {
+      bankAccountNumber: accountNo,
+      nameOnBankAccount: name,
+      ifscCode: ifscCode
+    }
+
+    dispatch(updateBankDetailThunk(bankDetails));
+  };
+
+  useEffect(() => {
+    dispatch(getBankDetailThunk());
+  }, []);
+
   return (
     <>
       <Header />
@@ -20,7 +57,10 @@ export default function BankDetails() {
                 />
               </div>
               <div className="bank">
-                <form className="space-y-4 md:space-y-6" onSubmit={() => { }}>
+                <form
+                  className="space-y-4 md:space-y-6"
+                  onSubmit={handleOnSubmit}
+                >
                   <div>
                     <label
                       htmlFor="accountHolderName"
@@ -34,8 +74,8 @@ export default function BankDetails() {
                       id="accountHolderName"
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                       required
-                    // onChange={}
-                    value={"John Jacobs"}
+                      onChange={handleOnChangeName}
+                      value={name}
                     />
                   </div>
 
@@ -52,8 +92,8 @@ export default function BankDetails() {
                       id="accountNo"
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                       required
-                    // onChange={}
-                    value={"8776223987538992"}
+                      onChange={handleOnChangeAccountNo}
+                      value={accountNo}
                     />
                   </div>
 
@@ -70,8 +110,8 @@ export default function BankDetails() {
                       id="ifscCode"
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                       required
-                    // onChange={}
-                    value={"FGUH5281GU"}
+                      onChange={handleOnChangeIfsc}
+                      value={ifscCode}
                     />
                   </div>
                   <div>
