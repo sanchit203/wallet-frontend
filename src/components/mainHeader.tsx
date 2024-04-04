@@ -55,6 +55,9 @@ export default function Header() {
               "aria-labelledby": "basic-button"
             }}
           >
+            <Link to="/home">
+              <MenuItem onClick={handleClose}>Home</MenuItem>
+            </Link>
             {isAdmin() && (
               <Link to="/admin">
                 <MenuItem onClick={handleClose}>Admin</MenuItem>
@@ -73,6 +76,14 @@ export default function Header() {
         <div className="flex gap-x-1 text-lg font-bold">
           <div className="hidden md:block" id="profileMenu">
             <div className="flex space-x-2 mr-2">
+              <Link to="/home">
+                <button
+                  type="button"
+                  className="text-gray-600 bg-white hover:bg-blue-100 border border-blue-400 font-medium rounded-full text-sm px-3 py-2.5"
+                >
+                  HOME
+                </button>
+              </Link>
               {isAdmin() && (
                 <Link to="/admin">
                   <button

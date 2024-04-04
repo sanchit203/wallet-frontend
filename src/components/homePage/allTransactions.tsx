@@ -80,7 +80,7 @@ export default function AllTransactions() {
                                   type="button"
                                   className="p-2 items-center gap-x-2 text-sm rounded-lg border rounded-md hover:bg-gray-100"
                                 >
-                                  Detials
+                                  Details
                                 </button>
                               </Link>
                             </td>
