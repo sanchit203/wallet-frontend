@@ -13,6 +13,7 @@ import { ToastContainer } from "react-toastify";
 import { MILLISECONDS_IN_AN_HOUR } from "./constant/Time";
 import Withdraw from "./components/homePage/withdraw";
 import TransactionDetail from "./components/homePage/transationDetail";
+import Admin from "./components/admin/admin";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -45,7 +46,8 @@ function App() {
         <Route path="/my-profile" element={isLoggedIn ? <MyProfile /> : <Navigate to="/" />} />
         <Route path="/transactions" element={isLoggedIn ? <AllTransactions /> : <Navigate to="/" />} />
         <Route path="/withdraw" element={isLoggedIn ? <Withdraw /> : <Navigate to="/" />} />
-        <Route path="/transaction-detail" element={isLoggedIn ? <TransactionDetail /> : <Navigate to="/" />} />
+        <Route path="/transaction-detail/:id" element={isLoggedIn ? <TransactionDetail /> : <Navigate to="/" />} />
+        <Route path="/admin" element={isLoggedIn ? <Admin /> : <Navigate to="/" />} />
       </Routes>
       <ToastContainer />
     </>

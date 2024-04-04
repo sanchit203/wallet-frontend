@@ -9,9 +9,10 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   async (config) => {
     try {
-      const idToken = getAccessTokenAndTTLFromLocalStorage();
-      if(idToken) {
-        config.headers.Authorization = `Bearer ${idToken}`;
+      const accessTokenAndTTL = getAccessTokenAndTTLFromLocalStorage();
+      if(accessTokenAndTTL) {
+        const {accessToken} = accessTokenAndTTL
+        config.headers.Authorization = `Bearer ${accessToken}`;
       }
     } catch (err) {
       console.error(err);

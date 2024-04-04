@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import loginSlice from '../feature/loginSlice';
+import homePageSlice from '../feature/homePageSlice';
 
 export const store = configureStore({
   reducer: {
-    loginSlice: loginSlice
+    loginSlice: loginSlice,
+    homePageSlice: homePageSlice,
   },
 });
 

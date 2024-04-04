@@ -1,21 +1,31 @@
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import TransactionsTable from "./homePage/transationsTable";
 import Header from "./mainHeader";
 import { Link } from "react-router-dom";
+import { homePageThunk } from "../feature/homePageSlice";
 
 export default function HomePage() {
+  const dispatch = useAppDispatch();
+  const withdrawableAmount = useAppSelector(state => state.homePageSlice.withdrawable);
+  const investedAmount = useAppSelector(state => state.homePageSlice.totalInvested);
+
+  useEffect(() => {
+    dispatch(homePageThunk());
+  }, [])
+
   return (
     <>
       <Header />
       <div>
         <div
           className="m-6 h-[700px] rounded-lg block"
-        // style={{ backgroundColor: "#5683d2" }}
         >
           <div className="w-[350px] p-6 bg-white text-center rounded-2xl shadow-2xl mx-auto balance">
             <p className="mb-2 text-xl font-bold text-gray-500">Total invested :</p>
-            <p className="mb-2 text-2xl font-bold text-green-600">₹ 5869.04</p>
+            <p className="mb-2 text-2xl font-bold text-green-600">₹ {`${investedAmount}`}</p>
             <h5 className="mb-2 text-xl font-bold text-gray-500 withdraw">
-              Withdrawable : ₹ 352.04
+              Withdrawable : ₹ {`${withdrawableAmount}`}
             </h5>
             <Link to="/withdraw">
               <button

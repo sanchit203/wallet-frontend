@@ -1,0 +1,20 @@
+.AdminAccordionDetails{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.withdrawal-balance {
+    width: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.add-transaction{
+    padding-top: 10px;
+    width: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
