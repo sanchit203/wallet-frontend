@@ -8,9 +8,9 @@ export default function BankDetails() {
   const bankDetails = useAppSelector(state => state.bankDetailSlice);
   const dispatch = useAppDispatch();
 
-  const [accountNo, setAccountNo] = useState(bankDetails.bankAccountNumber);
-  const [name, setName] = useState(bankDetails.nameOnBankAccount);
-  const [ifscCode, setIfscCode] = useState(bankDetails.ifscCode);
+  const [accountNo, setAccountNo] = useState("");
+  const [name, setName] = useState("");
+  const [ifscCode, setIfscCode] = useState("");
 
   const handleOnChangeAccountNo = (event: any) => {
     setAccountNo(event.target.value);
@@ -38,6 +38,12 @@ export default function BankDetails() {
   useEffect(() => {
     dispatch(getBankDetailThunk());
   }, []);
+
+  useEffect(() => {
+    setAccountNo(bankDetails.bankAccountNumber);
+    setIfscCode(bankDetails.ifscCode);
+    setName(bankDetails.nameOnBankAccount);
+  }, [bankDetails])
 
   return (
     <>

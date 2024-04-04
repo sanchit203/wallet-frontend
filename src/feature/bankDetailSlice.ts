@@ -1,6 +1,8 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axiosInstance from "../utilities/axiosInstance";
 import { BANK_DETAILS } from "../constant/ApiPath";
+import { AxiosError } from "axios";
+import { toast } from "react-toastify";
 
 export interface IBankDetailSlice {
   bankAccountNumber: string;
@@ -34,10 +36,15 @@ export const updateBankDetailThunk = createAsyncThunk(
         BANK_DETAILS,
         updateBankDetailRequest
       );
+      toast.success("Bank details updated successfully", {theme: "dark"});
       return response.data;
-    } catch (err) {
-      throw err;
-    }
+    } catch(ex: any) {
+      if (ex instanceof AxiosError)
+          toast.error(ex?.response?.data?.message, {
+              theme: "dark"
+          });
+      throw ex;
+  }
   }
 );
 

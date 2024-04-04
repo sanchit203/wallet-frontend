@@ -14,6 +14,7 @@ import { MILLISECONDS_IN_AN_HOUR } from "./constant/Time";
 import Withdraw from "./components/homePage/withdraw";
 import TransactionDetail from "./components/homePage/transationDetail";
 import Admin from "./components/admin/admin";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const dispatch = useAppDispatch();
