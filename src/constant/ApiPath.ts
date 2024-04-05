@@ -10,3 +10,5 @@ export const TRANSACTION = "/transaction";
 export const CREATE_WITHDRAW_REQUEST = "/transaction/create-withdraw-request";
 export const ALL_USERS = "/user-details/get-all";
 export const UPDATE_WITHDRAWL = "/user-details/update-withdrawl-balance";
+export const GET_ALL_WITHDRAW_REQUEST = "/transaction/get-all-withdraw";
+export const UPDATE_WITHDRAW_REQUEST = "/transaction/update-withdraw-request";

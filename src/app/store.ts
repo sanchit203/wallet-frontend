@@ -7,6 +7,7 @@ import transactionSlice from '../feature/transactionSlice';
 import withdrawPageSlice from '../feature/withdrawPageSlice';
 import transactionDetailSlice from '../feature/transactionDetailSlice';
 import adminTransactionSlice from '../feature/adminTransactionSlice';
+import adminWithdrawSlice from '../feature/adminWithdrawSlice';
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ export const store = configureStore({
     withdrawDetailSlice: withdrawPageSlice,
     transactionDetailSlice: transactionDetailSlice,
     adminTransactionSlice: adminTransactionSlice,
+    adminWithdrawSlice: adminWithdrawSlice
   },
 });
 
